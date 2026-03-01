@@ -3,7 +3,7 @@
 > **⚠️ Status Note:** This repository is currently being refactored from a local development environment for public open-source release. The full source code, including the C++ execution module, is scheduled to be pushed by **March 2nd, 2026**.
 
 ## 1. Project Overview
-This project implements an end-to-end quantitative trading pipeline focused on **Statistical Arbitrage (Pairs Trading)** in crypto markets. Unlike traditional cointegration approaches that assume a static relationship between assets, this engine utilizes a **Kalman Filter** to estimate time-varying hedge ratios ($\beta$) in real-time, allowing for adaptation to structural market breaks.
+This project implements an end-to-end quantitative trading pipeline focused on **Statistical Arbitrage (Pairs Trading)** in financial markets. Unlike traditional cointegration approaches that assume a static relationship between assets, this engine utilizes a **Kalman Filter** to estimate time-varying hedge ratios ($\beta$) in real-time, allowing for adaptation to structural market breaks.
 
 Furthermore, it integrates an **Optimal Execution** module based on the Avellaneda-Stoikov framework to manage inventory risk and minimize transaction costs.
 
