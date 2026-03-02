@@ -1,6 +1,6 @@
 # Statistical Arbitrage & Optimal Execution Engine
 
-> **⚠️ Status Note:** This repository is currently being refactored from a local development environment for public open-source release. The full source code, including the C++ execution module, is scheduled to be pushed by **March 3rd, 2026**.
+> **⚠️ Status Note:** This repository is currently being refactored from a local development environment for public open-source release. The full source code, including the execution module, is scheduled to be pushed by **March 3rd, 2026**.
 
 ## 1. Project Overview
 This project implements an end-to-end quantitative trading pipeline focused on **Statistical Arbitrage (Pairs Trading)** in financial markets. Unlike traditional cointegration approaches that assume a static relationship between assets, this engine utilizes a **Kalman Filter** to estimate time-varying hedge ratios ($\beta$) in real-time, allowing for adaptation to structural market breaks.
@@ -44,13 +44,13 @@ The system is designed with a modular architecture to separate signal generation
 ```
 ### Module Breakdown (Pending Upload)
 * **`src/signals/kalman.py`**: Implementation of the iterative predict-update cycle using `pykalman` and `numpy`.
-* **`src/execution/hjb_agent.cpp`**: Low-latency C++ module for solving the inventory equations and placing orders.
-* **`src/backtest/event_driven.py`**: Custom backtester simulating L2 order book latency and FIFO queue position.
+* **`src/execution/hjb_agent.cpp`**: module for solving the inventory equations and placing orders.
+* **`src/backtest/event_driven.py`**: Custom backtester simulating order book latency and FIFO queue position.
 
 ## 4. Roadmap & Progress
 
 - [x] Mathematical Formulation & Literature Review
-- [x] Data Pipeline (Binance/Alpaca APIs)
+- [x] Data Pipeline (Yahoo Finance)
 - [x] Signal Generation (Kalman Implementation)
 - [ ] **Code Cleanup & Documentation (In Progress)**
 - [ ] Unit Tests Coverage
