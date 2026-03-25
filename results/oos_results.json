@@ -1,0 +1,11 @@
+{
+    "total_net_profit": 4869.573751104588,
+    "return_pct": 4.869573751104588,
+    "sharpe_ratio": 1.2117450468047695,
+    "max_drawdown_pct": -2.4938876158355288,
+    "total_fills": 266,
+    "eod_liquidations": 113,
+    "model_active_pct": 100.0,
+    "gamma": 0.08402580930762696,
+    "kappa": 0.7284307260160494
+}
