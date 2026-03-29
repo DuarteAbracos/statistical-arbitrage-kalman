@@ -13,6 +13,8 @@ A complete quantitative trading pipeline implementing an **Avellaneda-Stoikov ma
 | Max Drawdown | -2.49% |
 | Total Fills | 266 |
 | Model Active | 100% of bars |
+| Capital Deployed (peak) | $35,923 |
+| Return on Capital Deployed | 13.56% (27 months) |
 
 All results are **net of transaction costs** ($0.005/share Alpaca fees) with phantom fill prevention applied.
 
