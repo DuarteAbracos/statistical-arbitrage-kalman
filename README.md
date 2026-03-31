@@ -1,4 +1,4 @@
-# High-Frequency Market Making with Avellaneda-Stoikov & Kalman Filter
+# Intraday Market Making with Avellaneda-Stoikov & Kalman Filter
 
 A complete quantitative trading pipeline implementing an **Avellaneda-Stoikov market maker** on cointegrated equity pairs, with dynamic hedge ratio estimation via **Kalman Filter**.
 
@@ -15,6 +15,8 @@ A complete quantitative trading pipeline implementing an **Avellaneda-Stoikov ma
 | Model Active | 100% of bars |
 | Capital Deployed (peak) | $35,923 |
 | Return on Capital Deployed | 13.56% (27 months) |
+
+The strategy **performs better in high-volatility regimes** and **preserves capital** in low-volatility periods.
 
 All results are **net of transaction costs** ($0.005/share Alpaca fees) with phantom fill prevention applied.
 
@@ -59,6 +61,8 @@ Paper Trader: Live validation script
 
 **Phantom fill prevention.** Bars >2 minutes apart are flagged as gaps. No execution on gap transitions. Removed 2,130 phantom fills from OOS results.
 
+**Paper trader uses reduced position sizing.** The backtest uses CONTRACT_MULTIPLIER=100 and MAX_INVENTORY=50. The paper trader uses CONTRACT_MULTIPLIER=10 and MAX_INVENTORY=10 to keep capital requirements manageable. PnL scales linearly — the Sharpe and fill pattern should be comparable.
+
 ## Project Structure
 
 ```
@@ -89,13 +93,19 @@ source quant_env/bin/activate  # Linux/Mac
 # Install dependencies
 pip install pandas numpy scipy scikit-learn matplotlib pykalman alpaca-py yfinance statsmodels
 
-## Set API keys
+## Set API keys:
+
 # Linux/Mac
 export ALPACA_API_KEY="your_key"
 export ALPACA_API_SECRET="your_secret"
-# Windows
-set ALPACA_API_KEY="your_key"
-set ALPACA_API_SECRET="your_secret"
+
+# Windows (CMD)
+set ALPACA_API_KEY=your_key
+set ALPACA_API_SECRET=your_secret
+
+# Windows (PowerShell)
+$env:ALPACA_API_KEY="your_key"
+$env:ALPACA_API_SECRET="your_secret"
 ```
 
 Run notebooks in order: NB01 → NB02 → NB03 → NB04.
@@ -107,7 +117,7 @@ cd live
 python paper_trader.py
 ```
 
-Requires Alpaca paper trading account. Logs saved to `./paper_logs/`.
+Requires Alpaca paper trading account. Uses IEX feed (free tier). Logs saved to `./paper_logs/`.
 
 ## Mathematical Framework
 
@@ -124,3 +134,4 @@ Requires Alpaca paper trading account. Logs saved to `./paper_logs/`.
 - Avellaneda, M. & Stoikov, S. (2008). *High-frequency trading in a limit order book.*
 - Guéant, O., Lehalle, C.A. & Fernandez-Tapia, J. (2012). *Dealing with the inventory risk.*
 - Chan, E. *Algorithmic Trading: Winning Strategies and Their Rationale.*
+- Lopez de Prado, M. (2018). *Advances in Financial Machine Learning.*
