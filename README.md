@@ -89,9 +89,13 @@ source quant_env/bin/activate  # Linux/Mac
 # Install dependencies
 pip install pandas numpy scipy scikit-learn matplotlib pykalman alpaca-py yfinance statsmodels
 
-# Set API keys
+## Set API keys
+# Linux/Mac
 export ALPACA_API_KEY="your_key"
 export ALPACA_API_SECRET="your_secret"
+# Windows
+set ALPACA_API_KEY="your_key"
+set ALPACA_API_SECRET="your_secret"
 ```
 
 Run notebooks in order: NB01 → NB02 → NB03 → NB04.
