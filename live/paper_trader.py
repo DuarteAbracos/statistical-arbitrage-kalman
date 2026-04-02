@@ -322,7 +322,23 @@ class PaperTrader:
             feed="iex",
         )
 
-        bars = self.data_client.get_stock_bars(request).df.reset_index()
+        # 1. Obtaining brute response
+        response = self.data_client.get_stock_bars(request)
+
+        # 2. Verifiy if the DataFrame came back empty (Alpaca can be flaky sometimes)
+        if response.df.empty:
+            log.warning("A Alpaca não retornou dados de histórico (DataFrame vazio). Tentando novamente em 60 segundos...")
+            time.sleep(60)
+            return self._warmup()  # try to run the warmup again
+
+        # 3. Reset the index safely, ensuring 'timestamp' is a column
+        bars = response.df.reset_index()
+
+        # 4. Extra prevension: Alpaca changed 'timestamp' to 'time' in some versions, so we check and rename if needed
+        if "timestamp" not in bars.columns and "time" in bars.columns:
+            bars = bars.rename(columns={"time": "timestamp"})
+
+        # 5. Pivot safely
         pivot = bars.pivot(index="timestamp", columns="symbol")
 
         x_prices = pivot["close"][TICKER_X].dropna()
